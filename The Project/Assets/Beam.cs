@@ -40,7 +40,6 @@ public class Beam : MonoBehaviour {
 				if (smash.rigidbody != null){
 					Debug.DrawLine (ray.origin, smash.point);
 					Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
-					//GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
 				foreach (Collider hit in colliders) {
 					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 0);
 
