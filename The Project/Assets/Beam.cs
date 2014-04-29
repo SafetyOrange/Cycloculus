@@ -38,7 +38,12 @@ public class Beam : MonoBehaviour {
 					GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
 				foreach (Collider hit in colliders) {
 					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 0);
-				
+
+					// Play the explosion sound when the beam hits a cube.
+					GameObject imHit = hit.transform.gameObject;
+					if (imHit == GameObject.Find("prefab_cube")) {	
+						imHit.GetComponent<AudioSource>().audio.Play();
+					}
 				}
 			}
 		}
