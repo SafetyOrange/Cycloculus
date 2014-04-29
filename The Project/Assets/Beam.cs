@@ -28,6 +28,11 @@ public class Beam : MonoBehaviour {
 			fire = false;
 			GetComponentInChildren<MeshRenderer>().enabled=false;
 		}
+
+		if (fire) {
+			GetComponent<AudioSource>().audio.Play();
+			GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
+		}
 		
 		RaycastHit smash;
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, .5f));
@@ -35,14 +40,16 @@ public class Beam : MonoBehaviour {
 				if (smash.rigidbody != null){
 					Debug.DrawLine (ray.origin, smash.point);
 					Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
-					GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
+					//GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
 				foreach (Collider hit in colliders) {
 					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 0);
 
 					// Play the explosion sound when the beam hits a cube.
 					GameObject imHit = hit.transform.gameObject;
-					if (imHit == GameObject.Find("prefab_cube")) {	
-						imHit.GetComponent<AudioSource>().audio.Play();
+					if (imHit == GameObject.Find("prefab_cube")) {
+						if (!imHit.GetComponent<AudioSource>().audio.isPlaying) {
+							imHit.GetComponent<AudioSource>().audio.Play();
+						}
 					}
 				}
 			}
