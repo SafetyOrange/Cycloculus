@@ -46,8 +46,10 @@ public class Beam : MonoBehaviour {
 					// Play the explosion sound when the beam hits a cube.
 					GameObject imHit = hit.transform.gameObject;
 					if (imHit == GameObject.Find("prefab_cube")) {
-						if (!imHit.GetComponent<AudioSource>().audio.isPlaying) {
-							imHit.GetComponent<AudioSource>().audio.Play();
+						AudioSource[] tmp = imHit.GetComponents<AudioSource>();
+						// First in the array is first in the Inspector, in this case the explosion.
+						if (!tmp[0].audio.isPlaying) {
+							tmp[0].audio.Play();
 						}
 					}
 				}
