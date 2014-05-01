@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Box : MonoBehaviour {
 
-	AudioSource[] myAudio;
+	AudioSource[] myAudios;
 	Vector3 lastPos;
 
 	// Use this for initialization
 	void Start () {
 	
-		myAudio = GetComponents<AudioSource>();
+		myAudios = GetComponents<AudioSource>();
 		lastPos = transform.position;
 	}
 	
@@ -21,9 +21,11 @@ public class Box : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (transform.position != lastPos) {
-			foreach (AudioSource clip in myAudio) {
-				if(clip.clip.name == "hit"){
-					clip.Play();
+			foreach (AudioSource thisAudio in myAudios) {
+				if(thisAudio.clip.name == "hit"){
+					if (!thisAudio.isPlaying) {
+						thisAudio.Play();
+					}
 				}
 			}
 		}
