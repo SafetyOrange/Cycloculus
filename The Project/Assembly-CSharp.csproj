@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\scripts\Beam.cs" />
      <Compile Include="Assets\scripts\Box.cs" />
+     <Compile Include="Assets\scripts\makeObjects.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
