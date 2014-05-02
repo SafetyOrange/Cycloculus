@@ -5,6 +5,9 @@ public class Box : MonoBehaviour {
 
 	AudioSource[] myAudios;
 	Vector3 lastPos;
+	bool die = false;
+	float dieStart = 0;
+	float i = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +20,13 @@ public class Box : MonoBehaviour {
 	void Update () {
 	
 		lastPos = transform.position;
+
+		if(die){
+			if(Time.time < dieStart + 2){
+				i += .01f;
+				renderer.material.SetFloat("_Cutoff", i);
+			} else Destroy(this.gameObject);
+		}
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -29,5 +39,12 @@ public class Box : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void Die () {
+
+		die = true;
+		dieStart = Time.time;
+
 	}
 }
