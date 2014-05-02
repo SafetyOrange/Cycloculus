@@ -18,7 +18,7 @@ public class makeObjects : MonoBehaviour {
 		//Debug.Log(targetList.Length);
 
 		if (targetList.Length < 5) {
-			GameObject newCube = Instantiate("prefab_cube", Vector3.zero, Quaternion.identity) as GameObject;
+			//GameObject newCube = Instantiate("prefab_cube", Vector3.zero, Quaternion.identity) as GameObject;
 		}
 	}
 }
