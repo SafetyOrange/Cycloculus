@@ -42,6 +42,7 @@ public class Beam : MonoBehaviour {
 					Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
 				foreach (Collider hit in colliders) {
 					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 3);
+					hit.gameObject.SendMessage("Die");
 					if(!hit.rigidbody.isKinematic) hit.rigidbody.velocity = ray.direction * splode;
 
 					// Play the explosion sound when the beam hits a cube.
