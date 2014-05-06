@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: a1f59e7d6298c438582118c80587cb3e
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Head
+    100002: Head Effector
+    100004: Joint
+    100006: Left Foot
+    100008: Left Foot Effector
+    100010: Left Hand
+    100012: Left Hand Effector
+    100014: Left Joint
+    100016: Left Joint.2
+    100018: Left Joint.3
+    100020: Left Joint.4
+    100022: Left Joint.5
+    100024: Left Lower Arm
+    100026: Left Shin
+    100028: Left Thigh
+    100030: Left Upper Arm
+    100032: //RootNode
+    100034: Neck
+    100036: Right Foot
+    100038: Right Foot Effector
+    100040: Right Hand
+    100042: Right Hand Effector
+    100044: Right Joint
+    100046: Right Joint.2
+    100048: Right Joint.3
+    100050: Right Joint.4
+    100052: Right Joint.5
+    100054: Right Lower Arm
+    100056: Right Shin
+    100058: Right Thigh
+    100060: Right Upper Arm
+    100062: Upper Body
+    400000: Head
+    400002: Head Effector
+    400004: Joint
+    400006: Left Foot
+    400008: Left Foot Effector
+    400010: Left Hand
+    400012: Left Hand Effector
+    400014: Left Joint
+    400016: Left Joint.2
+    400018: Left Joint.3
+    400020: Left Joint.4
+    400022: Left Joint.5
+    400024: Left Lower Arm
+    400026: Left Shin
+    400028: Left Thigh
+    400030: Left Upper Arm
+    400032: //RootNode
+    400034: Neck
+    400036: Right Foot
+    400038: Right Foot Effector
+    400040: Right Hand
+    400042: Right Hand Effector
+    400044: Right Joint
+    400046: Right Joint.2
+    400048: Right Joint.3
+    400050: Right Joint.4
+    400052: Right Joint.5
+    400054: Right Lower Arm
+    400056: Right Shin
+    400058: Right Thigh
+    400060: Right Upper Arm
+    400062: Upper Body
+    2300000: Head
+    2300002: Joint
+    2300004: Left Foot
+    2300006: Left Hand
+    2300008: Left Joint
+    2300010: Left Joint.2
+    2300012: Left Joint.3
+    2300014: Left Joint.4
+    2300016: Left Joint.5
+    2300018: Left Lower Arm
+    2300020: Left Shin
+    2300022: Left Thigh
+    2300024: Left Upper Arm
+    2300026: //RootNode
+    2300028: Neck
+    2300030: Right Foot
+    2300032: Right Hand
+    2300034: Right Joint
+    2300036: Right Joint.2
+    2300038: Right Joint.3
+    2300040: Right Joint.4
+    2300042: Right Joint.5
+    2300044: Right Lower Arm
+    2300046: Right Shin
+    2300048: Right Thigh
+    2300050: Right Upper Arm
+    2300052: Upper Body
+    3300000: Head
+    3300002: Joint
+    3300004: Left Foot
+    3300006: Left Hand
+    3300008: Left Joint
+    3300010: Left Joint.2
+    3300012: Left Joint.3
+    3300014: Left Joint.4
+    3300016: Left Joint.5
+    3300018: Left Lower Arm
+    3300020: Left Shin
+    3300022: Left Thigh
+    3300024: Left Upper Arm
+    3300026: //RootNode
+    3300028: Neck
+    3300030: Right Foot
+    3300032: Right Hand
+    3300034: Right Joint
+    3300036: Right Joint.2
+    3300038: Right Joint.3
+    3300040: Right Joint.4
+    3300042: Right Joint.5
+    3300044: Right Lower Arm
+    3300046: Right Shin
+    3300048: Right Thigh
+    3300050: Right Upper Arm
+    3300052: Upper Body
+    4300000: Figure.1
+    4300002: Left Thigh
+    4300004: Left Shin
+    4300006: Left Foot
+    4300008: Left Joint
+    4300010: Left Joint.2
+    4300012: Right Thigh
+    4300014: Right Shin
+    4300016: Right Foot
+    4300018: Right Joint
+    4300020: Right Joint.2
+    4300022: Upper Body
+    4300024: Left Upper Arm
+    4300026: Left Lower Arm
+    4300028: Left Hand
+    4300030: Left Joint.3
+    4300032: Left Joint.4
+    4300034: Left Joint.5
+    4300036: Right Upper Arm
+    4300038: Right Lower Arm
+    4300040: Right Hand
+    4300042: Right Joint.3
+    4300044: Right Joint.4
+    4300046: Right Joint.5
+    4300048: Head
+    4300050: Neck
+    4300052: Joint
+    4300054: Figure.2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

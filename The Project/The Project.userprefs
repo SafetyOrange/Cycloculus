@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Box.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Cityscape/Assets/scripts/spectrumAnalysis.cs">
     <Files>
-      <File FileName="Assets/scripts/Beam.cs" Line="6" Column="1" />
-      <File FileName="Assets/scripts/Box.cs" Line="26" Column="10" />
+      <File FileName="../../Cityscape/Assets/scripts/spectrumAnalysis.cs" Line="33" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
