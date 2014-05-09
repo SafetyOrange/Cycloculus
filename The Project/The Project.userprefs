@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Cityscape/Assets/scripts/spectrumAnalysis.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/BMABeam.cs">
     <Files>
-      <File FileName="../../Cityscape/Assets/scripts/spectrumAnalysis.cs" Line="33" Column="5" />
+      <File FileName="Assets/scripts/BMABeam.cs" Line="62" Column="87" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
