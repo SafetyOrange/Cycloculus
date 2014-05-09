@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\BMABeam.cs" />
      <Compile Include="Assets\scripts\Beam.cs" />
      <Compile Include="Assets\scripts\Box.cs" />
      <Compile Include="Assets\scripts\makeObjects.cs" />
+     <Compile Include="Assets\scripts\offsetBeamTexture.cs" />
+     <Compile Include="Assets\scripts\offsetBeamTexture2.cs" />
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
