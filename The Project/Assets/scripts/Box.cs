@@ -6,14 +6,17 @@ public class Box : MonoBehaviour {
 	AudioSource[] myAudios;
 	Vector3 lastPos;
 	bool die = false;
+	bool scoredPoint = false;
 	float dieStart = 0;
 	float i = 0;
+	GameObject controller;
 
 	// Use this for initialization
 	void Start () {
 	
 		myAudios = GetComponents<AudioSource>();
 		lastPos = transform.position;
+		controller = GameObject.Find("pf_controller");
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,11 @@ public class Box : MonoBehaviour {
 				i += .01f;
 				renderer.material.SetFloat("_Cutoff", i);
 			} else Destroy(this.gameObject);
+
+			if (!scoredPoint) {
+				controller.GetComponent<makeObjects>().score++;
+				scoredPoint = true;
+			}
 		}
 	}
 
@@ -38,6 +46,14 @@ public class Box : MonoBehaviour {
 					}
 				}
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other) {
+		// Reset the score if collides with the player.
+		if (other.gameObject.tag == "MainCamera") {
+			controller.GetComponent<makeObjects>().score = 0;
+			Debug.Log("lose!");
 		}
 	}
 

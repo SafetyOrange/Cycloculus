@@ -63,19 +63,21 @@ public class BMABeam : MonoBehaviour {
 				if(!GameObject.Find("beamSplode").particleSystem.isPlaying) GameObject.Find("beamSplode").particleSystem.Play();
 				Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
 				foreach (Collider hit in colliders) {
-					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 3);
-					hit.gameObject.SendMessage("Die");
-					if(!hit.rigidbody.isKinematic) hit.rigidbody.velocity = ray.direction * splode;
-					
-					// Play the explosion sound when the beam hits a cube.
-					GameObject imHit = hit.transform.gameObject;
-					if (imHit.tag == "Respawn") {
-						AudioSource[] myAudios = imHit.GetComponents<AudioSource>();
-						foreach (AudioSource thisAudio in myAudios) {
-							if(thisAudio.clip.name == "Explosion8"){
-								//if (!thisAudio.isPlaying) {
-								thisAudio.Play();
-								//}
+					if (hit.rigidbody != null) {
+						hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 3);
+						hit.gameObject.SendMessage("Die");
+						if(!hit.rigidbody.isKinematic) hit.rigidbody.velocity = ray.direction * splode;
+						
+						// Play the explosion sound when the beam hits a cube.
+						GameObject imHit = hit.transform.gameObject;
+						if (imHit.tag == "Respawn") {
+							AudioSource[] myAudios = imHit.GetComponents<AudioSource>();
+							foreach (AudioSource thisAudio in myAudios) {
+								if(thisAudio.clip.name == "Explosion8"){
+									//if (!thisAudio.isPlaying) {
+									thisAudio.Play();
+									//}
+								}
 							}
 						}
 					}

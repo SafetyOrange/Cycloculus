@@ -5,6 +5,7 @@ public class makeObjects : MonoBehaviour {
 
 	GameObject[] targetList;
 	public GameObject theCube, mann1, mann2, mann3, mann4;
+	public int score = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class makeObjects : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		Debug.Log("score = " + score);
 	}
 
 	void makeStuff() {
@@ -35,19 +36,14 @@ public class makeObjects : MonoBehaviour {
 			} else if (die >= (1f / numSides) * 4f) {
 				tmp = mann4;
 			}
-			GameObject newThang = Instantiate(tmp, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-			Vector3 flyToPlayer = Camera.main.transform.position - newThang.transform.position; // Calculate the vector towards the player.
-			//Debug.Log(flyToPlayer);
-			//newThang.rigidbody.AddForce(new Vector3(0, 1000f, 0));
-			//float mult = 100f;
-			//Debug.Log(flyToPlayer.magnitude);
-			//newThang.rigidbody.AddForce(flyToPlayer * flyToPlayer.magnitude);
-			//newThang.rigidbody.AddForce(new Vector3(flyToPlayer.x, 100f, flyToPlayer.z));
+			float limit = 50f;
+			GameObject newThang = Instantiate(tmp, new Vector3(Random.Range(-limit, limit), 0, Random.Range(0, limit)), Quaternion.identity) as GameObject;
 			newThang.rigidbody.velocity = BallisticVel(newThang.transform);
-			Debug.Log(newThang.rigidbody.velocity);
+			//Debug.Log(newThang.rigidbody.velocity);
 		}
 	}
 
+	// Thanks to http://answers.unity3d.com/questions/448681/how-do-i-make-a-projectile-arc-and-always-hit-a-mo.html for this method.
 	Vector3 BallisticVel(Transform projectile) {
 		Vector3 dir = Camera.main.transform.position - projectile.position; // get target direction
 		float h = dir.y;  // get height difference
