@@ -7,7 +7,7 @@ public class BMABeam : MonoBehaviour {
 	public float splode;
 	public float rads;
 	bool fire = false;
-
+	public AudioSource[] myAudios;
 	public ParticleSystem beamBlast;
 
 
@@ -15,7 +15,7 @@ public class BMABeam : MonoBehaviour {
 	void Start () {
 		
 		fwd = transform.forward;
-		
+		myAudios = GetComponents<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -43,7 +43,13 @@ public class BMABeam : MonoBehaviour {
 		}
 		
 		if (fire) {
-			GetComponent<AudioSource>().audio.Play();
+			foreach (AudioSource thisAudio in myAudios) {
+				if(thisAudio.clip.name == "Laser_Shoot2"){
+					//if (!thisAudio.isPlaying) {
+						thisAudio.Play();
+					//}
+				}
+			}
 			//GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
 			GetComponentInChildren<Light>().enabled=true;
 

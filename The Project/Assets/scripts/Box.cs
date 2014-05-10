@@ -54,6 +54,15 @@ public class Box : MonoBehaviour {
 		if (other.gameObject.tag == "MainCamera") {
 			controller.GetComponent<makeObjects>().score = 0;
 			Debug.Log("lose!");
+
+			GameObject player = other.gameObject;
+			foreach (AudioSource thisAudio in player.GetComponent<BMABeam>().myAudios) {
+				if(thisAudio.clip.name == "lose"){
+					if (!thisAudio.isPlaying) {
+						thisAudio.Play();
+					}
+				}
+			}
 		}
 	}
 

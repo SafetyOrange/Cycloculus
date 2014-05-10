@@ -40,6 +40,8 @@ public class makeObjects : MonoBehaviour {
 			GameObject newThang = Instantiate(tmp, new Vector3(Random.Range(-limit, limit), 0, Random.Range(0, limit)), Quaternion.identity) as GameObject;
 			newThang.rigidbody.velocity = BallisticVel(newThang.transform);
 			//Debug.Log(newThang.rigidbody.velocity);
+
+			GetComponent<AudioSource>().audio.Play();
 		}
 	}
 
