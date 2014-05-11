@@ -41,6 +41,14 @@ public class makeObjects : MonoBehaviour {
 			newThang.rigidbody.velocity = BallisticVel(newThang.transform);
 			//Debug.Log(newThang.rigidbody.velocity);
 
+			/*
+			AudioSource audioSource = newThang.AddComponent<AudioSource>();
+			audioSource.clip = Resources.Load("sounds/danger") as AudioClip;
+			audioSource.minDistance = 50;
+			audioSource.loop = true;
+			audioSource.Play();
+			*/
+
 			GetComponent<AudioSource>().audio.Play();
 		}
 	}
