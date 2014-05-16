@@ -28,6 +28,11 @@ public class Beam : MonoBehaviour {
 			fire = false;
 			GetComponentInChildren<MeshRenderer>().enabled=false;
 		}
+
+		if (fire) {
+			GetComponent<AudioSource>().audio.Play();
+			GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
+		}
 		
 		RaycastHit smash;
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, .5f));
@@ -35,10 +40,23 @@ public class Beam : MonoBehaviour {
 				if (smash.rigidbody != null){
 					Debug.DrawLine (ray.origin, smash.point);
 					Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
-					GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
 				foreach (Collider hit in colliders) {
-					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 0);
-				
+					hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 3);
+					hit.gameObject.SendMessage("Die");
+					if(!hit.rigidbody.isKinematic) hit.rigidbody.velocity = ray.direction * splode;
+
+					// Play the explosion sound when the beam hits a cube.
+					GameObject imHit = hit.transform.gameObject;
+					if (imHit.tag == "Respawn") {
+						AudioSource[] myAudios = imHit.GetComponents<AudioSource>();
+						foreach (AudioSource thisAudio in myAudios) {
+							if(thisAudio.clip.name == "Explosion8"){
+								//if (!thisAudio.isPlaying) {
+									thisAudio.Play();
+								//}
+							}
+						}
+					}
 				}
 			}
 		}
