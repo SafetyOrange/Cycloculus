@@ -71,7 +71,9 @@ public class BMABeam : MonoBehaviour {
 				foreach (Collider hit in colliders) {
 					if (hit.rigidbody != null) {
 						hit.rigidbody.AddExplosionForce(splode, smash.point, rads, 3);
-						hit.gameObject.SendMessage("Die");
+						if (hit.gameObject.tag == "Respawn") {
+							hit.gameObject.SendMessage("Die");
+						}
 						if(!hit.rigidbody.isKinematic) hit.rigidbody.velocity = ray.direction * splode;
 						
 						// Play the explosion sound when the beam hits a cube.

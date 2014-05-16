@@ -6,6 +6,7 @@ public class makeObjects : MonoBehaviour {
 	GameObject[] targetList;
 	public GameObject theCube, mann1, mann2, mann3, mann4;
 	public int score = 0;
+	public GUIText myText;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,8 @@ public class makeObjects : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log("score = " + score);
+		//Debug.Log("score = " + score);
+		myText.text = "Score: " + score;
 	}
 
 	void makeStuff() {
