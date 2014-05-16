@@ -53,7 +53,7 @@ public class Box : MonoBehaviour {
 		// Reset the score if collides with the player.
 		if (other.gameObject.tag == "MainCamera") {
 			controller.GetComponent<makeObjects>().score = 0;
-			Debug.Log("lose!");
+			//Debug.Log("lose!");
 
 			GameObject player = other.gameObject;
 			foreach (AudioSource thisAudio in player.GetComponent<BMABeam>().myAudios) {
