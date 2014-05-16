@@ -62,7 +62,7 @@ public class BMABeam : MonoBehaviour {
 		
 		RaycastHit smash;
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, .5f));
-		if (Physics.SphereCast(ray, 10, out smash) && fire){
+		if (Physics.SphereCast(ray, 1, out smash) && fire){
 			if (smash.rigidbody != null){
 				Debug.DrawLine (ray.origin, smash.point);
 				GameObject.Find("beamSplode").transform.position=smash.point; //THIS IS BROKEN OMG
