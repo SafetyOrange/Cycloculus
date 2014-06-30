@@ -11,7 +11,7 @@ public class BMABeam : MonoBehaviour {
 
 	bool arm, fire = false;
 	float chargeTimer, fireTimer = -1;
-	float shotVal = 0;
+	float shotVal = -1;
 	int chargeLimit = 3000; 			//This is in milliseconds
 	int perfectCharge = 2500;
 	int perfectBuffer = 200;
@@ -56,17 +56,20 @@ public class BMABeam : MonoBehaviour {
 	
 	void ComputeShot(){
 		
-		if(chargeTimer != -1 && !arm){
+		if(shotVal != -1 && !arm){
 			if(shotVal<perfectCharge-perfectBuffer){		//Undershot
 				Debug.Log ("Weak");
+				ResetFiring();
 			}
 			else if(shotVal>perfectCharge+perfectBuffer){	//Too much
 				Debug.Log ("Too Much");
+				ResetFiring();
 			}
 			else{											//Perfect
 				Debug.Log ("Perfect");
 				fire=true;
 				fireTimer = Time.time * 1000;
+				ResetFiring();
 			}
 
 
@@ -90,7 +93,7 @@ public class BMABeam : MonoBehaviour {
 				box.enabled = true;
 			}
 
-			if(Time.time-fireTimer >= fireDur){
+			if(Time.time * 1000 - fireTimer >= fireDur){
 				fire=false;
 				ResetFiring();
 			}
@@ -135,6 +138,7 @@ public class BMABeam : MonoBehaviour {
 	void ResetFiring(){
 
 		chargeTimer = -1;		//Must be done when inactive
+		shotVal = -1;
 
 		if(GameObject.Find("beamSplode").particleSystem.isPlaying) GameObject.Find("beamSplode").particleSystem.Stop();
 		beamBlast.particleSystem.enableEmission = false;

@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/BMABeam.cs">
     <Files>
-      <File FileName="Assets/scripts/BMABeam.cs" Line="10" Column="9" />
-      <File FileName="Assets/scripts/Box.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/makeObjects.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/BMABeam.cs" Line="43" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
