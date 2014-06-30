@@ -6,9 +6,16 @@ public class BMABeam : MonoBehaviour {
 	Vector3 fwd;
 	public float splode;
 	public float rads;
-	bool fire = false;
 	public AudioSource[] myAudios;
 	public ParticleSystem beamBlast;
+
+	bool arm, fire = false;
+	float chargeTimer, fireTimer = -1;
+	float shotVal = 0;
+	int chargeLimit = 3000; 			//This is in milliseconds
+	int perfectCharge = 2500;
+	int perfectBuffer = 200;
+	float fireDur = 1500;
 
 
 	// Use this for initialization
@@ -20,46 +27,78 @@ public class BMABeam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		//		if (Physics.Raycast(transform.position, fwd, 10))
-		//			print("There is something in front of the object!");
 
+		MeasureShot();
+		ComputeShot();
+		FireShot();
+		FirePhysics();
+
+	}
+
+	void MeasureShot(){
 		
-		if (Input.GetMouseButtonDown(0)) {
-			fire = true;
-			beamBlast.particleSystem.enableEmission = true;
+		if(Input.GetMouseButtonDown(0) && !arm && !fire){
+			arm = true;
+			chargeTimer = Time.time * 1000;
+			Debug.Log("Charging");
 		}
-		if (Input.GetMouseButtonUp(0)) {
-			fire = false;
-			if(GameObject.Find("beamSplode").particleSystem.isPlaying) GameObject.Find("beamSplode").particleSystem.Stop();
-			beamBlast.particleSystem.enableEmission = false;
-			MeshRenderer[] beamBoxes = GetComponentsInChildren<MeshRenderer>(); 
-			foreach (MeshRenderer box in beamBoxes) {
-				box.enabled = false;
+		
+		if(Input.GetMouseButtonUp(0) && arm){
+			shotVal = Time.time * 1000 - chargeTimer;
+			arm = false;
+		}
+		else if(Time.time*1000 >= chargeTimer+chargeLimit && arm){
+			shotVal = chargeTimer + chargeLimit;
+			arm=false;
+			Debug.Log("Overload");
+		}
+	}
+	
+	void ComputeShot(){
+		
+		if(chargeTimer != -1 && !arm){
+			if(shotVal<perfectCharge-perfectBuffer){		//Undershot
+				Debug.Log ("Weak");
+			}
+			else if(shotVal>perfectCharge+perfectBuffer){	//Too much
+				Debug.Log ("Too Much");
+			}
+			else{											//Perfect
+				Debug.Log ("Perfect");
+				fire=true;
+				fireTimer = Time.time * 1000;
 			}
 
-			GetComponentInChildren<MeshRenderer>().enabled=false;
-			GetComponentInChildren<Light>().enabled=false;
+
 		}
+	}
+	
+	void FireShot(){
 		
-		if (fire) {
+		if(fire){
+
+			beamBlast.particleSystem.enableEmission = true;
 			foreach (AudioSource thisAudio in myAudios) {
 				if(thisAudio.clip.name == "Laser_Shoot2"){
-					//if (!thisAudio.isPlaying) {
-						thisAudio.Play();
-					//}
+					thisAudio.Play();
 				}
 			}
-			//GetComponentInChildren<MeshRenderer>().enabled=!GetComponentInChildren<MeshRenderer>().enabled;
-			GetComponentInChildren<Light>().enabled=true;
 
+			GetComponentInChildren<Light>().enabled=true;
 			MeshRenderer[] beamBoxes = GetComponentsInChildren<MeshRenderer>(); 
 			foreach (MeshRenderer box in beamBoxes) {
 				box.enabled = true;
 			}
 
+			if(Time.time-fireTimer >= fireDur){
+				fire=false;
+				ResetFiring();
+			}
 		}
-		
+	}
+
+	void FirePhysics(){
+
 		RaycastHit smash;
 		Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.4325f, 0.5f, 0.5f));
 		if (Physics.SphereCast(ray, 0.5f, out smash) && fire){
@@ -82,9 +121,7 @@ public class BMABeam : MonoBehaviour {
 							AudioSource[] myAudios = imHit.GetComponents<AudioSource>();
 							foreach (AudioSource thisAudio in myAudios) {
 								if(thisAudio.clip.name == "Explosion8"){
-									//if (!thisAudio.isPlaying) {
 									thisAudio.Play();
-									//}
 								}
 							}
 						}
@@ -92,5 +129,21 @@ public class BMABeam : MonoBehaviour {
 				}
 			}
 		}
+
+	}
+
+	void ResetFiring(){
+
+		chargeTimer = -1;		//Must be done when inactive
+
+		if(GameObject.Find("beamSplode").particleSystem.isPlaying) GameObject.Find("beamSplode").particleSystem.Stop();
+		beamBlast.particleSystem.enableEmission = false;
+		MeshRenderer[] beamBoxes = GetComponentsInChildren<MeshRenderer>(); 
+		foreach (MeshRenderer box in beamBoxes) {
+			box.enabled = false;
+		}
+		
+		GetComponentInChildren<MeshRenderer>().enabled=false;
+		GetComponentInChildren<Light>().enabled=false;
 	}
 }
