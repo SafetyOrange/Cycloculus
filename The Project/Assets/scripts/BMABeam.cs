@@ -59,20 +59,19 @@ public class BMABeam : MonoBehaviour {
 		if(shotVal != -1 && !arm){
 			if(shotVal<perfectCharge-perfectBuffer){		//Undershot
 				Debug.Log ("Weak");
-				ResetFiring();
+				map(splode,0,100,shotVal,2500);
 			}
 			else if(shotVal>perfectCharge+perfectBuffer){	//Too much
 				Debug.Log ("Too Much");
-				ResetFiring();
+				map(rads,0,5,shotVal,3000);
 			}
 			else{											//Perfect
 				Debug.Log ("Perfect");
-				fire=true;
-				fireTimer = Time.time * 1000;
-				ResetFiring();
 			}
 
-
+			fire=true;
+			fireTimer = Time.time * 1000;
+			ResetFiring();
 		}
 	}
 	
@@ -146,8 +145,15 @@ public class BMABeam : MonoBehaviour {
 		foreach (MeshRenderer box in beamBoxes) {
 			box.enabled = false;
 		}
+
+		splode=90;
+		rads=1;
 		
 		GetComponentInChildren<MeshRenderer>().enabled=false;
 		GetComponentInChildren<Light>().enabled=false;
 	}
+
+	float map(float s, float a1, float a2, float b1, float b2){
+		return b1 + (s-a1)*(b2-b1)/(a2-a1);
+		}
 }
