@@ -9,6 +9,7 @@ public class BMABeam : MonoBehaviour {
 	public AudioSource[] myAudios;
 	public ParticleSystem beamBlast;
 	public ParticleSystem beamCharge;
+	public ParticleSystem beamOverload;
 
 	bool arm, fire = false;
 	float chargeTimer, fireTimer = -1;
@@ -17,6 +18,7 @@ public class BMABeam : MonoBehaviour {
 	int perfectCharge = 1000;
 	int perfectBuffer = 200;
 	float fireDur = 0;
+	bool overloaded = false;
 
 
 	// Use this for initialization
@@ -54,6 +56,7 @@ public class BMABeam : MonoBehaviour {
 			shotVal = chargeTimer + chargeLimit;
 			arm=false;
 			Debug.Log("Overload");
+			
 		}
 	}
 	
@@ -65,10 +68,13 @@ public class BMABeam : MonoBehaviour {
 				map(splode,0,100,shotVal,2500);
 				fireDur = shotVal;
 			}
-			else if(shotVal>perfectCharge+perfectBuffer){	//Too much
+			else if(shotVal>perfectCharge+(perfectBuffer*10) ){	//Too much
 				Debug.Log ("Too Much");
 				map(rads,0,5,shotVal,3000);
-				fireDur = 1000;
+				fireDur = shotVal;
+				beamOverload.gameObject.SetActive(true);
+				overloaded = true; 
+
 			}
 			else{											//Perfect
 				Debug.Log ("Perfect");
@@ -104,6 +110,10 @@ public class BMABeam : MonoBehaviour {
 			if(Time.time * 1000 - fireTimer >= fireDur){
 				fire=false;
 				ResetFiring();
+				if (overloaded == true) {
+					beamOverload.gameObject.SetActive(false);
+					overloaded = false; 
+				}
 			}
 		}
 	}
