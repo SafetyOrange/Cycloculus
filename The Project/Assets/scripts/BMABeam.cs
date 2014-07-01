@@ -8,19 +8,20 @@ public class BMABeam : MonoBehaviour {
 	public float rads;
 	public AudioSource[] myAudios;
 	public ParticleSystem beamBlast;
+	public ParticleSystem beamCharge;
 
 	bool arm, fire = false;
 	float chargeTimer, fireTimer = -1;
 	float shotVal = -1;
-	int chargeLimit = 3000; 			//This is in milliseconds
-	int perfectCharge = 2500;
+	int chargeLimit = 2000; 			//This is in milliseconds
+	int perfectCharge = 1000;
 	int perfectBuffer = 200;
-	float fireDur = 1500;
+	float fireDur = 0;
 
 
 	// Use this for initialization
 	void Start () {
-		
+		beamCharge.particleSystem.enableEmission = false;
 		fwd = transform.forward;
 		myAudios = GetComponents<AudioSource>();
 	}
@@ -41,6 +42,8 @@ public class BMABeam : MonoBehaviour {
 			arm = true;
 			chargeTimer = Time.time * 1000;
 			Debug.Log("Charging");
+			beamCharge.gameObject.SetActive(true);
+			beamCharge.particleSystem.enableEmission = true;
 		}
 		
 		if(Input.GetMouseButtonUp(0) && arm){
@@ -60,15 +63,18 @@ public class BMABeam : MonoBehaviour {
 			if(shotVal<perfectCharge-perfectBuffer){		//Undershot
 				Debug.Log ("Weak");
 				map(splode,0,100,shotVal,2500);
+				fireDur = shotVal;
 			}
 			else if(shotVal>perfectCharge+perfectBuffer){	//Too much
 				Debug.Log ("Too Much");
 				map(rads,0,5,shotVal,3000);
+				fireDur = 1000;
 			}
 			else{											//Perfect
 				Debug.Log ("Perfect");
+				fireDur = shotVal;
 			}
-
+			
 			fire=true;
 			fireTimer = Time.time * 1000;
 			ResetFiring();
@@ -78,7 +84,10 @@ public class BMABeam : MonoBehaviour {
 	void FireShot(){
 		
 		if(fire){
-
+			beamCharge.particleSystem.enableEmission = false;
+			beamCharge.particleSystem.Stop(); 
+			beamCharge.particleSystem.Clear(); 
+			beamCharge.gameObject.SetActive(false);
 			beamBlast.particleSystem.enableEmission = true;
 			foreach (AudioSource thisAudio in myAudios) {
 				if(thisAudio.clip.name == "Laser_Shoot2"){
@@ -151,7 +160,8 @@ public class BMABeam : MonoBehaviour {
 		
 		GetComponentInChildren<MeshRenderer>().enabled=false;
 		GetComponentInChildren<Light>().enabled=false;
-	}
+
+		}
 
 	float map(float s, float a1, float a2, float b1, float b2){
 		return b1 + (s-a1)*(b2-b1)/(a2-a1);
