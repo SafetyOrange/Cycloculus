@@ -9,6 +9,7 @@ public class Box : MonoBehaviour {
 	bool scoredPoint = false;
 	float dieStart = 0;
 	float i = 0;
+	public int health=20;
 	GameObject controller;
 
 	// Use this for initialization
@@ -64,6 +65,11 @@ public class Box : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void Hurt() {
+		Debug.Log("I AM BEING HURT NOW");
+		health--;
 	}
 
 	void Die () {
