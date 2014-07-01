@@ -26,11 +26,23 @@ public class Box : MonoBehaviour {
 		lastPos = transform.position;
 
 		if(die){
-			if(Time.time < dieStart + 2){
-				i += .01f;
-				renderer.material.SetFloat("_Cutoff", i);
-			} else Destroy(this.gameObject);
 
+			if(gameObject.transform.childCount>0){
+				foreach(Renderer j in GetComponentsInChildren<Renderer>()){
+					if(Time.time < dieStart + 2){
+						i += .0005f;
+						renderer.material.SetFloat("_Cutoff", i);
+						j.material.SetFloat("_Cutoff",i);
+					}else Destroy(this.gameObject);
+				}
+			}
+			else{
+				if(Time.time < dieStart + 2){
+					i += .01f;
+					renderer.material.SetFloat("_Cutoff", i);
+				}else Destroy(this.gameObject);
+			}
+				
 			if (!scoredPoint) {
 				controller.GetComponent<makeObjects>().score++;
 				scoredPoint = true;
@@ -68,7 +80,6 @@ public class Box : MonoBehaviour {
 	}
 
 	void Hurt() {
-		Debug.Log("I AM BEING HURT NOW");
 		health--;
 	}
 
