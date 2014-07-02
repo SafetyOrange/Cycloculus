@@ -129,7 +129,7 @@ public class BMABeam : MonoBehaviour {
 				if(!GameObject.Find("beamSplode").particleSystem.isPlaying) GameObject.Find("beamSplode").particleSystem.Play();
 				Collider[] colliders = Physics.OverlapSphere(smash.point, rads);
 				foreach (Collider hit in colliders) {
-					if (hit.rigidbody != null){// && hit.gameObject.tag == "Respawn") {
+					if (hit.rigidbody != null && hit.gameObject.tag == "Respawn") {
 						hit.gameObject.SendMessage("Hurt");
 
 						if(hit.gameObject.GetComponent<Box>().health <= 0){
